@@ -1,0 +1,88 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+/**
+ * Representa un boleto de museo.
+ * Contiene información como precio, número de boleto y fecha de emisión.
+ * Cada vez que se crea un nuevo boleto, se incrementa un contador global.
+ * 
+ * @author Raquel Gómez Vargas 
+ * @version 1.0
+ */
+
+public class BoletoMuseo {
+  
+  /** Precio del boleto. */
+  private double precio;
+  
+  /** Número único del boleto. */
+  private int numeroBoleto;
+  
+  /** Fecha en que se emitió el boleto (formato yyyy-MM-dd).*/
+  private String fechaEmision;
+  
+  /** Contador estático que lleva el total de boletos creados. */
+  private static int contador = 0;
+  
+  /**
+   * Constructor que crea un nuevo boleto con el precio indicado.
+   * 
+   * @param precio Precio del boleto. 
+   */
+  public BoletoMuseo(double precio) {
+    this.precio = precio;
+    contador++;
+    this.numeroBoleto = contador;
+    this.fechaEmision = establecerFechaEmisionBoleto();
+  }
+  
+  /**
+   * Establece la fecha de emisión del boleto con la fecha actual.
+   * 
+   * @return La fecha en formato yyyy-MM-dd
+   */
+  private String establecerFechaEmisionBoleto() {
+    DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    return LocalDate.now().format(f);
+  }
+  
+  /**
+   * Obtiene el contador de boletos creados. 
+   * 
+   * @return Número total de boletos creados.
+   */
+  public static int getContador() {
+    return contador;
+  }
+  
+  /**
+   * Obtiene el número del boleto. 
+   * 
+   * @return Número único del boleto. 
+   */
+  public int getNumeroBoleto() {
+    return numeroBoleto;
+  }
+  
+  /**
+   * Obtiene el precio del boleto.
+   * 
+   * @return Precio del boleto. 
+   */
+  public double getPrecio() {
+    return precio; 
+  }
+  
+  /**
+   * Devuelve el estado del boleto.
+   * 
+   * @return Cadena con información del boleto. 
+   */
+  public String toString() {
+    String msg = "BoletoMuseo\n";
+    msg += " Numero: " + numeroBoleto + "\n";
+    msg += " Precio: " + precio + "\n";
+    msg += " Fecha Emision: " + fechaEmision;
+    return msg;
+  }
+}
