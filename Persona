@@ -1,0 +1,81 @@
+/**
+ * Representa una persona que puede tener un boleto asignado. 
+ * Contiene su nombre, identificación y referencia a su boleto. 
+ * 
+ * @author Raquel Gómez Vargas 
+ * @version 1.0
+ */
+public class Persona {
+  /** Nombre de la persona. */
+  private String nombre;
+  
+  /** Identificación de la persona. */
+  private String identificacion;
+  
+  /** Boleto asigando a la persona. */
+  private BoletoMuseo miBoleto;
+  
+  /**
+   * Constructor que crea una persona con nombre e identificación.
+   * 
+   * @param nombre Nombre de la persona.
+   * @param iden Identificación de la persona.
+   */
+  public Persona(String nombre, String ident) {
+    this(nombre);
+    identificacion = ident;
+  }
+  
+  /**
+   * Crea una persona solo con su nombre.
+   * 
+   * @param nombre Nombre de la persona. 
+   */
+  public Persona(String nombre) {
+    this.nombre = nombre;
+  }
+  
+  /**
+   * Asigna o actualiza la identificación de la persona. 
+   * 
+   * @param pIdentificacion Identificación a asignar. 
+   */
+  public void setIdentificacion(String pIdentificacion) {
+    identificacion = pIdentificacion;
+  }
+  
+  /**
+   * Asigna un boleto a cada persona. 
+   * 
+   * @param pMiBoleto Boleto a asignar. 
+   */
+  public void asignarBoleto(BoletoMuseo pMiBoleto) {
+    miBoleto = pMiBoleto;
+  }
+  
+  /**
+   * Consulta el número del boleto asignado.
+   * 
+   * @return Número de boleto de la persona. 
+   */
+  public int consultasMiNumeroDeBoleto() {
+    return miBoleto.getNumeroBoleto();
+  }
+  
+  /**
+   * Devuelve el estado de la persona y su boleto.
+   * 
+   * @return Cadena con la información de la persona. 
+   */
+  public String toString() {
+    String msg = "Persona\n";
+    msg += " Nombre: " + nombre + "\n";
+    msg += " Identificacion: " + identificacion + "\n";
+    if (miBoleto != null) {
+      msg += " Boleto asignado: #" + miBoleto.getNumeroBoleto() + "\n";
+    } else {
+      msg += " Boleto asignado: (ninguno)\n";
+    }
+    return msg;
+  }
+}
