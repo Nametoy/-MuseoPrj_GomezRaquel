@@ -1,0 +1,78 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Representa la venta de boletos de un día en el museo. 
+ * Contiene la fecha y la lista de boletos vendidos.
+ * 
+ * @author Raquel Gómez Vargas 
+ * @version 1.0
+ */
+
+public class VentaDelDia {
+  
+  /** Fecha de la venta en formato yyyy-MM-dd. */
+  private String fechaDeLaVenta;
+  
+  /** Lista de boletos vendidos en el día. */
+  private List<BoletoMuseo> boletosVendidos;
+  
+  /**
+   * Constructor que inicializa la fecha y la lista de boletos vendidos.
+   */
+  public VentaDelDia() {
+    fechaDeLaVenta = establecerFechaDeLaVenta();
+    boletosVendidos = new ArrayList<>();
+  }
+  
+  /**
+   * Registra la venta de un boleto.
+   * 
+   * @param boleto Boleto a registrar.
+   */
+  public void registrarVentaBoleto(BoletoMuseo boleto) {
+    boletosVendidos.add(boleto);
+  }
+  
+  /**
+   * Calcula el monto total de la venta del día. 
+   * 
+   * @return Total de dinero de todos los boletos vendidos. 
+   */
+  public double calcularTotalVentaDelDia() {
+    double total = 0.0;
+    for (BoletoMuseo b : boletosVendidos) {
+      total += b.getPrecio();
+    }
+    return total;
+  }
+  
+  /**
+   * Establece la fecha actual como fecha de la venta.
+   * 
+   * @return Fecha en formato yyyy-MM-dd.
+   */
+  private String establecerFechaDeLaVenta() {
+    DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    return LocalDate.now().format(f);
+  }
+  
+  /**
+   * Devuelve el estado de la venta del día.
+   * 
+   * @return Cadena con la onformación de la venta. 
+   */
+  public String toString() {
+    String msg = "VentaDelDia\n";
+    msg += " Fecha: " + fechaDeLaVenta + "\n";
+    msg += " Cantidad de boletos: " + boletosVendidos.size() + "\n";
+    msg += " Detalle:\n";
+    for (BoletoMuseo b : boletosVendidos) {
+      msg += " -Boleto #" + b.getNumeroBoleto() + " | " + b.getPrecio() + "\n";
+    } 
+    msg += " Total: " + calcularTotalVentaDelDia();
+    return msg;
+  }
+}
